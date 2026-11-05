@@ -2,6 +2,16 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+const hero = document.querySelector('.hero');
+const buildIntro = document.getElementById('buildIntro');
+const finishIntro = () => {
+  if (!hero || !buildIntro) return;
+  buildIntro.classList.add('is-complete');
+  hero.classList.add('intro-ready');
+};
+if (reducedMotion) finishIntro();
+else window.setTimeout(finishIntro, 3800);
+
 const revealItems = document.querySelectorAll('.section, .project-card, .skill-list span, .education-line');
 if (reducedMotion) {
   revealItems.forEach((item) => item.classList.add('is-visible'));
